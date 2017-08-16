@@ -7,7 +7,7 @@ from flask import Flask
 from flask_ask import Ask, question, session, statement
 
 APP = Flask(__name__)
-ASK = Ask(APP, "/british_problems")
+ASK = Ask(APP, "/")
 
 
 def get_british_problems():
@@ -31,10 +31,6 @@ def get_british_problems():
     return titles
 
 
-titles = get_british_problems()
-print titles
-
-
 @ASK.launch
 def start_skill():
     """Entry point for the alexa skill"""
@@ -46,7 +42,7 @@ def start_skill():
 def handle_get_problem_intent():
     """Handles the intent for getting a new british problem and outputting it to Alexa"""
     british_problem = get_british_problems()
-    return statement(british_problem)
+    return statement(british_problem[0])
 
 
 @ASK.intent("NoIntent")
@@ -54,7 +50,3 @@ def handle_no_intent():
     """Handles an unmatched intent"""
     goodbye_message = 'See you later... bye.'
     return statement(goodbye_message)
-
-
-if __name__ == '__main__':
-    APP.run(debug=True)
