@@ -30,14 +30,9 @@ def get_british_problems():
               for listing in data['data']['children']]
     return titles
 
+
 titles = get_british_problems()
 print titles
-
-
-@APP.route('/')
-def homepage():
-    """Flask default routing"""
-    return 'greetz fren'
 
 
 @ASK.launch

@@ -1,0 +1,6 @@
+flask
+flask-ask
+unidecode
+zappa
+requests
+awscli
