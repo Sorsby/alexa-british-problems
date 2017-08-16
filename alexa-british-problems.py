@@ -1,5 +1,6 @@
 import json
 import time
+import random
 
 import requests
 import unidecode
@@ -22,7 +23,7 @@ def get_british_problems():
 
     sess.post('https://wwww.reddit.com/api/login', data=user_pass_dict)
     time.sleep(1)
-    url = "https://reddit.com/r/britishproblems/.json?limit=10"
+    url = "https://www.reddit.com/r/britishproblems/top/.json?limit=50"
     html = sess.get(url)
     data = json.loads(html.content.decode('utf-8'))
 
@@ -38,15 +39,17 @@ def start_skill():
     return question(welcome_message)
 
 
+@ASK.intent("YesIntent")
 @ASK.intent("GetNewBritishProblem")
 def handle_get_problem_intent():
     """Handles the intent for getting a new british problem and outputting it to Alexa"""
-    british_problem = get_british_problems()
-    return statement(british_problem[0])
+    british_problem = random.choice(get_british_problems())
+    response_msg = "Here's one I found... " + british_problem
+    return statement(response_msg)
 
 
 @ASK.intent("NoIntent")
 def handle_no_intent():
-    """Handles an unmatched intent"""
-    goodbye_message = 'See you later... bye.'
+    """Handles an intent to exit the skill and not receive a problem"""
+    goodbye_message = 'Are you sure? Ok... bye then!'
     return statement(goodbye_message)
