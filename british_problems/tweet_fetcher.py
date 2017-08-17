@@ -1,3 +1,5 @@
+"""Module to handle all twitter API related work"""
+
 import json
 import os
 
