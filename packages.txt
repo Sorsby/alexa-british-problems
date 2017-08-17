@@ -4,3 +4,4 @@ unidecode
 zappa
 requests
 awscli
+python-twitter
