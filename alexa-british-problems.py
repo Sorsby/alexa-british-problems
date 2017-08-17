@@ -11,7 +11,7 @@ APP = Flask(__name__)
 ASK = Ask(APP, "/")
 
 
-def get_british_problems():
+def get_british_problems_reddit():
     """Get the titles of the /r/britishproblems posts"""
     user_pass_dict = {'user': 'alexabritishproblems',
                       'passwd': '83O9ls8eC77lmO%3@rw&',
@@ -43,7 +43,7 @@ def start_skill():
 @ASK.intent("GetNewBritishProblem")
 def handle_get_problem_intent():
     """Handles the intent for getting a new british problem and outputting it to Alexa"""
-    british_problem = random.choice(get_british_problems())
+    british_problem = random.choice(get_british_problems_reddit())
     response_msg = "Here's one I found... " + british_problem
     return statement(response_msg)
 
