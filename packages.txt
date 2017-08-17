@@ -5,3 +5,4 @@ zappa
 requests
 awscli
 python-twitter
+praw
