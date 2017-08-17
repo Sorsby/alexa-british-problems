@@ -1,6 +1,6 @@
 {
     "dev": {
-        "app_function": "british_problems.intent_handler.APP", 
+        "app_function": "british_problems.my_intent_handler.APP", 
         "aws_region": "eu-west-1", 
         "profile_name": "default", 
         "s3_bucket": "zappa-1fc778w22"
