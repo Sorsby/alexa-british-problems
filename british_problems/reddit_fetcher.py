@@ -12,7 +12,7 @@ _REDDIT = praw.Reddit(user_agent=_REDDIT_USER_AGENT,
                       client_id=_REDDIT_CREDS['client_id'],
                       client_secret=_REDDIT_CREDS['client_secret'],
                       username=_REDDIT_CREDS['username'],
-                      password=_REDDIT_CREDS['passwd'])
+                      password=_REDDIT_CREDS['password'])
 
 _BRITISH_PROBLEMS_SUBREDDIT = _REDDIT.subreddit('britishproblems')
 
