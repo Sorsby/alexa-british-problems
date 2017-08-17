@@ -6,7 +6,9 @@
         "access_token_secret": "xxx"
     },
     "reddit": {
+        "client_id": "xxx",
+        "client_secret": "xxx",
         "username": "xxx",
-        "passwd": "xxx"
+        "password": "xxx"
     }
 }
