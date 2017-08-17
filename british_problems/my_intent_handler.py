@@ -20,7 +20,7 @@ def start_skill():
 @ASK.intent("GetNewBritishProblem")
 def handle_get_problem_intent():
     """Gets a new problem for reading out to the user"""
-    british_problem = random.choice(rf.get_british_problems_reddit())
+    british_problem = random.choice(rf.get_britishproblems_reddit())
     response_msg = "Here's one I found... " + british_problem
     return statement(response_msg)
 

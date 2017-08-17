@@ -1,27 +1,23 @@
 """Module to handle all Reddit API related work"""
-import json
-import time
 
-import requests
-import unidecode
+import praw
+
+import utils
 
 
-def get_british_problems_reddit():
-    """Get the titles of the /r/britishproblems posts"""
-    user_pass_dict = {'user': 'alexabritishproblems',
-                      'passwd': '83O9ls8eC77lmO%3@rw&',
-                      'api_type': 'json'}
-    sess = requests.Session()
-    sess.headers.update(
-        {'User-Agent': 'alexa:british_problems:0.1 ' +
-         '(by /u/alexabritishproblems)'})
+_REDDIT_USER_AGENT = 'alexa:british_problems:0.1 (by /u/alexabritishproblems)'
+_REDDIT_CREDS = utils.get_credentials('reddit')
 
-    sess.post('https://wwww.reddit.com/api/login', data=user_pass_dict)
-    time.sleep(1)
-    url = "https://www.reddit.com/r/britishproblems/top/.json?limit=50"
-    html = sess.get(url)
-    data = json.loads(html.content.decode('utf-8'))
+_REDDIT = praw.Reddit(user_agent=_REDDIT_USER_AGENT,
+                      client_id=_REDDIT_CREDS['client_id'],
+                      client_secret=_REDDIT_CREDS['client_secret'],
+                      username=_REDDIT_CREDS['username'],
+                      password=_REDDIT_CREDS['passwd'])
 
-    titles = [unidecode.unidecode(listing['data']['title'])
-              for listing in data['data']['children']]
-    return titles
+_BRITISH_PROBLEMS_SUBREDDIT = _REDDIT.subreddit('britishproblems')
+
+
+def get_britishproblems_reddit(count=10):
+    """Returns a list of length count (default 10, max 100)
+     of submission titles from /r/britishproblems"""
+    return [submission.title for submission in _BRITISH_PROBLEMS_SUBREDDIT.hot(limit=count)]
