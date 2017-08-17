@@ -11,7 +11,7 @@ ASK = Ask(APP, "/")
 
 @ASK.launch
 def start_skill():
-    """Entry point for the alexa skill"""
+    """Entry point for opening the Alexa Skill"""
     welcome_message = 'Hello there, would you like to hear a very British problem?'
     return question(welcome_message)
 
@@ -19,7 +19,7 @@ def start_skill():
 @ASK.intent("YesIntent")
 @ASK.intent("GetNewBritishProblem")
 def handle_get_problem_intent():
-    """Handles the intent for getting a new british problem and outputting it to Alexa"""
+    """Gets a new problem for reading out to the user"""
     british_problem = random.choice(rf.get_british_problems_reddit())
     response_msg = "Here's one I found... " + british_problem
     return statement(response_msg)
@@ -27,6 +27,6 @@ def handle_get_problem_intent():
 
 @ASK.intent("NoIntent")
 def handle_no_intent():
-    """Handles an intent to exit the skill and not receive a problem"""
+    """Quits the skill with a goodbye message"""
     goodbye_message = 'Are you sure? Ok... bye then!'
     return statement(goodbye_message)

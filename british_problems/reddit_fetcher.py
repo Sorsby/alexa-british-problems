@@ -1,4 +1,4 @@
-"""Module to handle all Reddit related work"""
+"""Module to handle all Reddit API related work"""
 import json
 import time
 
