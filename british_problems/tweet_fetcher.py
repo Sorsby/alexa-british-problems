@@ -23,7 +23,12 @@ API = twitter.Api(consumer_key=TWITTER_CREDS['consumer_key'],
 def get_soverybritish_tweets():
     """Gets tweets from @SoVeryBritish"""
     try:
-        tweets = API.GetUserTimeline(screen_name=TWITTER_SCREEN_NAME)
+        tweets = API.GetUserTimeline(
+            screen_name=TWITTER_SCREEN_NAME, count=200)
         return tweets
     except twitter.error.TwitterError as e:
         print "Couldn't fetch tweets because: " + e.message[0]['message']
+
+
+# tweets = [tweet.text for tweet in get_soverybritish_tweets()]
+# print tweets
